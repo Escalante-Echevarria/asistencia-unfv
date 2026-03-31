@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Asistencia UNFV FIEI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard-container">
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <h1>UNFV FIEI - Admin</h1>
+            </div>
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                    <span id="userName">Admin</span>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Salir
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="dashboard-admin.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="crud-alumnos.html"><i class="fas fa-user-graduate"></i> Alumnos</a></li>
+            <li><a href="crud-docentes.html"><i class="fas fa-chalkboard-teacher"></i> Docentes</a></li>
+            <li><a href="crud-cursos.html"><i class="fas fa-book"></i> Cursos</a></li>
+            <li><a href="crud-escuelas.html"><i class="fas fa-building"></i> Escuelas</a></li>
+            <li><a href="reportes.html"><i class="fas fa-chart-bar"></i> Reportes</a></li>
+            <li><a href="auditoria.html"><i class="fas fa-clipboard-list"></i> Auditoría</a></li>
+        </ul>
+    </aside>
+
+    <div class="main-content" style="margin-left: 280px;">
+        <!-- Stats Admin -->
+        <div class="stats-grid">
+            <div class="card stat-card">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div><h3 id="totalAlumnos">0</h3><p>Total Alumnos</p></div>
+            </div>
+            <div class="card stat-card">
+                <div class="stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                <div><h3 id="totalDocentes">0</h3><p>Total Docentes</p></div>
+            </div>
+            <div class="card stat-card">
+                <div class="stat-icon"><i class="fas fa-book"></i></div>
+                <div><h3 id="totalCursos">0</h3><p>Total Cursos</p></div>
+            </div>
+            <div class="card stat-card">
+                <div class="stat-icon"><i class="fas fa-calendar"></i></div>
+                <div><h3 id="totalAsistencias">0</h3><p>Total Asistencias</p></div>
+            </div>
+        </div>
+
+        <!-- Gestión Rápida -->
+        <div class="grid-2">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-search"></i> Buscar Asistencia</h2>
+                </div>
+                <form id="buscarAsistencia">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Curso</label>
+                            <select id="buscarCurso"></select>
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha</label>
+                            <input type="date" id="buscarFecha">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-tools"></i> Acciones Rápidas</h2>
+                </div>
+                <div class="btn-group-vertical">
+                    <a href="crud-alumnos.html" class="btn btn-primary"><i class="fas fa-plus"></i> Nuevo Alumno</a>
+                    <a href="crud-docentes.html" class="btn btn-success"><i class="fas fa-user-plus"></i> Nuevo Docente</a>
+                    <a href="crud-cursos.html" class="btn btn-warning"><i class="fas fa-book"></i> Nuevo Curso</a>
+                    <a href="auditoria.html" class="btn btn-danger"><i class="fas fa-eye"></i> Ver Auditoría</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            verificarSesion('admin');
+            cargarStatsAdmin();
+        });
+    </script>
+</body>
+</html>
