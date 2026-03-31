@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Docente - Asistencia UNFV FIEI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard-container">
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <i class="fas fa-university"></i>
+                <h1>UNFV FIEI - Asistencia</h1>
+            </div>
+            <div class="user-menu">
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">D</div>
+                    <span id="userName">Docente</span>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Salir
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="card stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div>
+                    <h3 id="totalCursos">0</h3>
+                    <p>Cursos a cargo</p>
+                </div>
+            </div>
+            <div class="card stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div>
+                    <h3 id="asistenciasHoy">0</h3>
+                    <p>Asistencias hoy</p>
+                </div>
+            </div>
+            <div class="card stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div>
+                    <h3 id="asistenciasMes">0</h3>
+                    <p>Asistencias mes</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seleccionar Curso -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-book"></i>
+                    Seleccionar Curso
+                </h2>
+            </div>
+            <select id="cursoSelect" class="form-group">
+                <option value="">-- Seleccione un curso --</option>
+            </select>
+            <button class="btn btn-primary" onclick="cargarAsistencia()">
+                <i class="fas fa-list"></i> Cargar Lista de Asistencia
+            </button>
+        </div>
+
+        <!-- Lista de Asistencia -->
+        <div id="listaAsistencia" class="card" style="display: none;">
+            <div class="card-header">
+                <h2 class="card-title" id="cursoTitle">
+                    <i class="fas fa-users"></i> Lista de Asistencia
+                </h2>
+                <button class="btn btn-success" onclick="guardarAsistencia()">
+                    <i class="fas fa-save"></i> Guardar Asistencia
+                </button>
+            </div>
+            <div class="table-container">
+                <table id="asistenciaTable">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Alumno</th>
+                            <th>Presente</th>
+                            <th>Tardanza</th>
+                            <th>Ausente</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Reportes Docente -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-chart-bar"></i>
+                    Reportes de Mis Cursos
+                </h2>
+            </div>
+            <div class="table-container">
+                <table id="reportesTable">
+                    <thead>
+                        <tr>
+                            <th>Curso</th>
+                            <th>Fecha</th>
+                            <th>Total Alumnos</th>
+                            <th>Presentes</th>
+                            <th>% Asistencia</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+    <script>
+        // Inicializar dashboard docente
+        document.addEventListener('DOMContentLoaded', function() {
+            verificarSesion('docente');
+            cargarDatosDocente();
+        });
+    </script>
+</body>
+</html>
