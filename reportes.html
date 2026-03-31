@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes - Asistencia UNFV FIEI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard-container">
+    <!-- Navbar igual que admin -->
+    <nav class="navbar">
+        <!-- ... navbar igual ... -->
+    </nav>
+
+    <aside class="sidebar">
+        <!-- ... sidebar igual ... -->
+    </aside>
+
+    <div class="main-content" style="margin-left: 280px;">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-chart-bar"></i>
+                    Reportes Completos
+                </h2>
+            </div>
+            
+            <!-- Filtros -->
+            <div class="filters-section">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Escuela</label>
+                        <select id="filtroEscuela">
+                            <option value="">Todas las escuelas</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Curso</label>
+                        <select id="filtroCurso">
+                            <option value="">Todos los cursos</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha Desde</label>
+                        <input type="date" id="fechaDesde">
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha Hasta</label>
+                        <input type="date" id="fechaHasta">
+                    </div>
+                    <button class="btn btn-primary" onclick="filtrarReportes()">
+                        <i class="fas fa-search"></i> Filtrar
+                    </button>
+                    <button class="btn btn-success" onclick="exportarReporte()">
+                        <i class="fas fa-download"></i> Exportar Excel
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tabla Reportes -->
+            <div class="table-container">
+                <table id="reportesGenerales">
+                    <thead>
+                        <tr>
+                            <th>Curso</th>
+                            <th>Escuela</th>
+                            <th>Fecha</th>
+                            <th>Total Alumnos</th>
+                            <th>Presentes</th>
+                            <th>Tardanzas</th>
+                            <th>Ausentes</th>
+                            <th>% Asistencia</th>
+                            <th>Docente</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Alumnos con Inasistencia Crítica -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Alumnos en Riesgo (Inasistencia > 30%)
+                </h2>
+            </div>
+            <div class="table-container">
+                <table id="riesgoTable">
+                    <thead>
+                        <tr>
+                            <th>Alumno</th>
+                            <th>Curso</th>
+                            <th>Total Clases</th>
+                            <th>Ausencias</th>
+                            <th>% Inasistencia</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/reportes.js"></script>
+</body>
+</html>
